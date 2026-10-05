@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>דן – שבוע השמירה 06–10/10/2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body { background: #FFF8E7; color: #2C2416; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Hebrew", Arial, sans-serif; font-size: 20px; line-height: 1.6; }
+  body { padding: 16px; padding-bottom: 100px; max-width: 720px; margin: 0 auto; }
+
+  h1 { font-size: 32px; color: #B4531A; text-align: center; margin: 10px 0 4px; font-weight: 800; }
+  .subtitle { text-align: center; font-size: 18px; color: #6B5A3E; margin-bottom: 24px; font-weight: 500; }
+
+  /* Sticky day tabs */
+  .tabs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; position: sticky; top: 0; background: #FFF8E7; padding: 12px 0; z-index: 100; margin-bottom: 20px; border-bottom: 3px solid #E6B570; }
+  .tab { font-size: 18px; font-weight: 700; padding: 14px 4px; background: #FFF; border: 2px solid #E6B570; border-radius: 12px; cursor: pointer; text-align: center; color: #6B5A3E; transition: all 0.15s; }
+  .tab .day-name { display: block; font-size: 20px; }
+  .tab .day-date { display: block; font-size: 14px; margin-top: 2px; opacity: 0.75; }
+  .tab.active { background: #B4531A; color: white; border-color: #B4531A; box-shadow: 0 4px 12px rgba(180,83,26,0.3); }
+  .tab:active { transform: scale(0.95); }
+
+  /* Day content */
+  .day { display: none; animation: fadeIn 0.25s; }
+  .day.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .day-title { font-size: 28px; color: #B4531A; font-weight: 800; margin-bottom: 6px; }
+  .day-caregiver { background: #FFE8CC; padding: 12px 16px; border-radius: 12px; margin-bottom: 20px; font-size: 20px; font-weight: 600; color: #8B3F0E; border-right: 6px solid #B4531A; }
+
+  .schedule { background: white; border-radius: 16px; padding: 8px 0; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .row { display: flex; align-items: center; padding: 14px 18px; border-bottom: 1px solid #F3E6CC; }
+  .row:last-child { border-bottom: none; }
+  .row .time { font-size: 22px; font-weight: 800; color: #B4531A; min-width: 110px; }
+  .row .action { font-size: 19px; color: #2C2416; flex: 1; }
+
+  /* Sections (same across all days) */
+  .section { background: white; border-radius: 16px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .section h2 { font-size: 24px; color: #B4531A; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .section h3 { font-size: 20px; color: #8B3F0E; margin: 14px 0 8px; }
+  .section p, .section li { font-size: 19px; margin-bottom: 8px; }
+  .section ul { padding-right: 24px; }
+  .section strong { color: #8B3F0E; }
+
+  .highlight { background: #FFF3DC; padding: 12px 16px; border-radius: 10px; border-right: 5px solid #E6A835; margin: 10px 0; }
+  .danger { background: #FFE8E0; padding: 12px 16px; border-radius: 10px; border-right: 5px solid #D94A1A; margin: 10px 0; }
+
+  .phone { display: inline-block; background: #B4531A; color: white; padding: 10px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 20px; margin: 6px 0; }
+  .phone:active { background: #8B3F0E; }
+
+  .address { color: #6B5A3E; font-size: 18px; margin: 4px 0; }
+
+  /* Common tab button at the bottom */
+  .common-tab { background: #6B5A3E; color: white; font-size: 18px; padding: 14px; border-radius: 12px; text-align: center; margin-top: 20px; cursor: pointer; font-weight: 700; }
+  .common-tab:active { background: #4A3F2B; }
+
+  .common-section { display: none; margin-top: 20px; }
+  .common-section.active { display: block; }
+
+  /* Food category chips */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+  .chip { background: #FFE8CC; color: #8B3F0E; padding: 8px 14px; border-radius: 20px; font-size: 18px; font-weight: 600; }
+
+  @media (max-width: 420px) {
+    body { font-size: 18px; padding: 12px; }
+    h1 { font-size: 26px; }
+    .tab { font-size: 16px; padding: 10px 2px; }
+    .tab .day-name { font-size: 17px; }
+    .tab .day-date { font-size: 12px; }
+    .day-title { font-size: 24px; }
+    .row .time { font-size: 20px; min-width: 90px; }
+    .row .action { font-size: 17px; }
+    .section h2 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<h1>🧒 שבוע עם דן</h1>
+<div class="subtitle">6 עד 10 באוקטובר 2026</div>
+
+<!-- Day Tabs -->
+<div class="tabs">
+  <button class="tab active" data-day="tue"><span class="day-name">שלישי</span><span class="day-date">06/10</span></button>
+  <button class="tab" data-day="wed"><span class="day-name">רביעי</span><span class="day-date">07/10</span></button>
+  <button class="tab" data-day="thu"><span class="day-name">חמישי</span><span class="day-date">08/10</span></button>
+  <button class="tab" data-day="fri"><span class="day-name">שישי</span><span class="day-date">09/10</span></button>
+  <button class="tab" data-day="sat"><span class="day-name">שבת</span><span class="day-date">10/10</span></button>
+</div>
+
+<!-- Tuesday -->
+<div class="day active" id="day-tue">
+  <div class="day-title">יום שלישי · 06/10</div>
+  <div class="day-caregiver">👴👵 אצל <strong>הורי שיר</strong> (סנונית 30א)</div>
+  <div class="schedule">
+    <div class="row"><div class="time">08:00</div><div class="action">שיר ועוז מכניסים לגן</div></div>
+    <div class="row"><div class="time">16:00</div><div class="action">הורי שיר אוספים מהגן</div></div>
+    <div class="row"><div class="time">16:00</div><div class="action">🍌 פרי קטן (רעב מהגן)</div></div>
+    <div class="row"><div class="time">18:00</div><div class="action">🍽️ ארוחת ערב</div></div>
+    <div class="row"><div class="time">18:30</div><div class="action">🛁 מקלחת</div></div>
+    <div class="row"><div class="time">19:00</div><div class="action">📖 סיפור + 🐰 ארנב + מוצץ → שינה בלול</div></div>
+  </div>
+</div>
+
+<!-- Wednesday -->
+<div class="day" id="day-wed">
+  <div class="day-title">יום רביעי · 07/10</div>
+  <div class="day-caregiver">👴👵 אצל <strong>הורי שיר</strong> (סנונית 30א)</div>
+  <div class="schedule">
+    <div class="row"><div class="time">08:00</div><div class="action">הורי שיר מכניסים לגן</div></div>
+    <div class="row"><div class="time">16:00</div><div class="action">הורי שיר אוספים מהגן</div></div>
+    <div class="row"><div class="time">16:00</div><div class="action">🍌 פרי קטן</div></div>
+    <div class="row"><div class="time">18:00</div><div class="action">🍽️ ארוחת ערב</div></div>
+    <div class="row"><div class="time">18:30</div><div class="action">🛁 מקלחת</div></div>
+    <div class="row"><div class="time">19:00</div><div class="action">📖 סיפור + 🐰 ארנב + מוצץ → שינה בלול</div></div>
+  </div>
+</div>
+
+<!-- Thursday -->
+<div class="day" id="day-thu">
+  <div class="day-title">יום חמישי · 08/10</div>
+  <div class="day-caregiver">👴👵 אצל <strong>הורי שיר</strong> (סנונית 30א)</div>
+  <div class="schedule">
+    <div class="row"><div class="time">08:00</div><div class="action">הורי שיר מכניסים לגן</div></div>
+    <div class="row"><div class="time">16:00</div><div class="action">הורי שיר אוספים מהגן</div></div>
+    <div class="row"><div class="time">16:00</div><div class="action">🍌 פרי קטן</div></div>
+    <div class="row"><div class="time">18:00</div><div class="action">🍽️ ארוחת ערב</div></div>
+    <div class="row"><div class="time">18:30</div><div class="action">🛁 מקלחת</div></div>
+    <div class="row"><div class="time">19:00</div><div class="action">📖 סיפור + 🐰 ארנב + מוצץ → שינה בלול</div></div>
+  </div>
+</div>
+
+<!-- Friday -->
+<div class="day" id="day-fri">
+  <div class="day-title">יום שישי · 09/10</div>
+  <div class="day-caregiver">🔄 <strong>יום החלפה</strong> – מהורי שיר → להורי עוז</div>
+  <div class="highlight">
+    <strong>⚠️ חשוב:</strong> לוודא ש<strong>הארנב 🐰 עובר עם דן</strong>!<br>
+    שאר הציוד – יש כבר הכל גם בחייקה גרוסמן 7, לא צריך להעביר.
+  </div>
+  <div class="schedule">
+    <div class="row"><div class="time">בוקר</div><div class="action">הורי עוז מגיעים לסנונית 30א, אוספים את דן</div></div>
+    <div class="row"><div class="time">במהלך היום</div><div class="action">דן עם הורי עוז בבית עוז ושיר (חייקה גרוסמן 7)</div></div>
+    <div class="row"><div class="time">18:00</div><div class="action">🍽️ ארוחת ערב</div></div>
+    <div class="row"><div class="time">18:30</div><div class="action">🛁 מקלחת</div></div>
+    <div class="row"><div class="time">19:00</div><div class="action">📖 סיפור + 🐰 ארנב + מוצץ → <strong>שינה במיטה שלו בחייקה גרוסמן</strong></div></div>
+  </div>
+</div>
+
+<!-- Saturday -->
+<div class="day" id="day-sat">
+  <div class="day-title">יום שבת · 10/10</div>
+  <div class="day-caregiver">👴👵 הורי עוז (עד שעוז ושיר חוזרים)</div>
+  <div class="schedule">
+    <div class="row"><div class="time">בוקר</div><div class="action">דן עם הורי עוז בבית חייקה גרוסמן</div></div>
+    <div class="row"><div class="time">צהריים</div><div class="action">🍽️ ארוחת צהריים</div></div>
+    <div class="row"><div class="time">~16:00</div><div class="action">🎉 עוז ושיר חוזרים הביתה (חייקה גרוסמן 7) – החלפה סופית</div></div>
+  </div>
+</div>
+
+<!-- Common sections -->
+<div class="common-tab" onclick="toggleSection('food')">🍽️ תזונה – הקלקה לפתיחה</div>
+<div class="common-section" id="food">
+  <div class="section">
+    <h2>🍽️ תזונה</h2>
+
+    <h3>16:00 – חזרה מהגן</h3>
+    <p>בדרך כלל רעב. <strong>פרי קטן.</strong></p>
+    <div class="chips">
+      <span class="chip">🍌 בננה</span>
+      <span class="chip">🍑 אפרסק</span>
+      <span class="chip">🥭 מנגו</span>
+      <span class="chip">🍉 אבטיח</span>
+      <span class="chip">🍐 אגסים</span>
+    </div>
+    <div class="highlight">
+      <strong>תפוח 🍎</strong> – לא ממש אוהב.<br>
+      <strong>לחתוך הכל דק, לא בעיגולים ⚠️</strong> (חנק)
+    </div>
+
+    <h3>18:00 – ארוחת ערב</h3>
+    <ul>
+      <li>🍞 פרנץ' טוסט</li>
+      <li>🍳 חביתה בתוך לחם</li>
+      <li>🥒 ירקות חתוכים – מלפפון, עגבניות שרי, אבוקדו</li>
+      <li>🍝 פסטה (אפשר בכל שעה – בוקר, צהריים, ערב)</li>
+    </ul>
+
+    <h3>בוקר (אם קם מוקדם לפני גן)</h3>
+    <p>בגן אוכלים ב-09:00–09:15. אם קם מוקדם – לתת <strong>פרי קטן</strong> שלא יהיה רעב.</p>
+
+    <h3>בוקר ללא גן – קוואקר</h3>
+    <ul>
+      <li>7 כפות קוואקר</li>
+      <li>12 כפות חלב רגיל <strong>או</strong> חלב שקדים</li>
+      <li>קצת צ'יה</li>
+      <li>2 כפיות חמאת בוטנים</li>
+    </ul>
+
+    <h3>צהריים (בימים ללא גן)</h3>
+    <p>בדרך כלל: <strong>מנת בשר + פחמימה</strong>.</p>
+  </div>
+</div>
+
+<div class="common-tab" onclick="toggleSection('sleep')">😴 שינה ורחצה – הקלקה לפתיחה</div>
+<div class="common-section" id="sleep">
+  <div class="section">
+    <h2>🛁 מקלחת</h2>
+    <p>אחרי ארוחת ערב – ישר למקלחת.<br>בין <strong>18:30–19:00</strong>, ואז סיפור ולישון.</p>
+  </div>
+  <div class="section">
+    <h2>😴 שינה</h2>
+    <ol style="padding-right: 24px;">
+      <li>📖 סיפור</li>
+      <li>🐰 <strong>ארנב + מוצץ – חשוב מאוד!</strong></li>
+      <li>💧 מים פושרים במיטה (אם ירצה לשתות)</li>
+      <li>אם עייף – נרדם מיד</li>
+    </ol>
+    <div class="highlight">
+      <strong>אם לא עייף וקורא כמה פעמים:</strong>
+      <ul>
+        <li>להרים אותו</li>
+        <li>להגיד לו: "כולם הלכו לישון"</li>
+        <li>להחזיר למיטה</li>
+      </ul>
+    </div>
+  </div>
+  <div class="section">
+    <h2>💩 החתלה</h2>
+    <p>עושה <strong>הרבה פעמים ביום</strong> – צריך לבדוק כל הזמן.</p>
+    <ul>
+      <li><strong>בבית:</strong> להחליף <strong>באמבטיה</strong> – לשטוף את הטוסיק במים (לא ליצור גירוי)</li>
+      <li><strong>מחוץ לבית:</strong> מטליות לחות</li>
+    </ul>
+  </div>
+</div>
+
+<div class="common-tab" onclick="toggleSection('emergency')">🚨 חירום ורפואה – הקלקה לפתיחה</div>
+<div class="common-section" id="emergency">
+  <div class="section">
+    <h2>👩‍⚕️ רופאת ילדים ראשית</h2>
+    <p><strong>ד"ר נעמי רוזנצוויג</strong></p>
+    <a href="https://wa.me/972553018946" class="phone">💬 WhatsApp: 055-301-8946</a>
+    <p class="address">📍 סוקולוב 34, רמת השרון, קומה 4</p>
+    <p style="font-size: 17px; color: #6B5A3E; margin-top: 6px;">יש לה מזכירה, אפשר WhatsApp</p>
+  </div>
+
+  <div class="section">
+    <h2>🏥 רופא פרטי (גיבוי)</h2>
+    <p><strong>ד"ר חנן נטר</strong> – רפואת ילדים, פגים ויילודים</p>
+    <a href="tel:+97299582266" class="phone">📞 09-958-2266</a>
+    <p class="address">📍 הנדיב 22, הרצליה</p>
+  </div>
+
+  <div class="section">
+    <h2>🏢 קופת חולים</h2>
+    <p><strong>מכבי</strong></p>
+    <p>לצרף תעודת זהות של דן – כל השאר נעשה משם.</p>
+  </div>
+
+  <div class="section">
+    <h2>💊 ערכת תרופות</h2>
+    <p>תהיה <strong>מסודרת על השיש</strong> (בד"כ בארון מעל הנינג'ה).</p>
+    <ul>
+      <li><strong>נורופן</strong></li>
+      <li><strong>אקמול</strong></li>
+      <li><strong>נובימול</strong></li>
+    </ul>
+    <div class="danger">
+      <strong>⚠️ המינונים רשומים על כל תרופה – חשוב להקפיד!</strong><br>
+      ✓ אפשר כל <strong>4–6 שעות</strong><br>
+      ✓ מקסימום <strong>4 פעמים ביום</strong>
+    </div>
+    <p style="margin-top: 10px;">בדרך כלל אוהב לקחת תרופות דרך הפה. אם לא מסכים – יש <strong>נרות</strong> (נורופן) להכנסה דרך הטוסיק.</p>
+  </div>
+
+  <div class="section">
+    <h2>⚠️ אלרגיות</h2>
+    <p style="font-size: 22px; color: #2C7A3F; font-weight: 700;">אין אלרגיות ✓</p>
+  </div>
+</div>
+
+<div class="common-tab" onclick="toggleSection('addresses')">📍 כתובות וקוד בניין – הקלקה לפתיחה</div>
+<div class="common-section" id="addresses">
+  <div class="section">
+    <h2>🏠 הורי שיר</h2>
+    <p class="address">סנונית 30א, רעננה</p>
+  </div>
+  <div class="section">
+    <h2>🏠 בית עוז ושיר</h2>
+    <p class="address">חייקה גרוסמן 7, דירה 13, רעננה</p>
+    <div class="highlight">
+      <strong>🔢 קוד בניין: 7518</strong><br>
+      🅿️ יש שלטים לחנייה – אפשר לחנות בחנייה
+    </div>
+  </div>
+  <div class="section">
+    <h2>🏫 גן מאמיוורק</h2>
+    <p class="address">ליד אסותא, רעננה</p>
+    <p>⏰ כניסה 08:00–08:30 · יציאה 16:00</p>
+  </div>
+</div>
+
+<div style="text-align: center; margin-top: 30px; padding: 20px; color: #6B5A3E; font-size: 16px;">
+  💛 תודה רבה על השמירה על דן!<br>
+  עוז ושיר
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const days = document.querySelectorAll('.day');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      days.forEach(d => d.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('day-' + tab.dataset.day).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  function toggleSection(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('active');
+    if (el.classList.contains('active')) {
+      setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    }
+  }
+
+  // Auto-select today
+  const today = new Date();
+  const day = today.getDay(); // 0=Sun, 2=Tue, 6=Sat
+  const map = { 2: 'tue', 3: 'wed', 4: 'thu', 5: 'fri', 6: 'sat' };
+  const todayKey = map[day];
+  const d = today.getDate(), m = today.getMonth() + 1;
+  if (todayKey && m === 10 && d >= 6 && d <= 10) {
+    document.querySelector(`[data-day="${todayKey}"]`)?.click();
+  }
+</script>
+</body>
+</html>
