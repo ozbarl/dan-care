@@ -45,6 +45,16 @@
   .highlight { background: #FFF3DC; padding: 12px 16px; border-radius: 10px; border-right: 5px solid #E6A835; margin: 10px 0; }
   .danger { background: #FFE8E0; padding: 12px 16px; border-radius: 10px; border-right: 5px solid #D94A1A; margin: 10px 0; }
 
+  /* Gan reminder cards */
+  .gan-reminder { background: linear-gradient(135deg, #FFF3DC 0%, #FFE8CC 100%); border: 3px solid #E6A835; border-radius: 14px; padding: 14px 16px; margin: 12px 0; }
+  .gan-reminder.evening { background: linear-gradient(135deg, #E8F4F8 0%, #D4E8EF 100%); border-color: #4A90A4; }
+  .gan-reminder .gr-title { font-size: 20px; font-weight: 800; color: #8B3F0E; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .gan-reminder.evening .gr-title { color: #2C5A6B; }
+  .gan-reminder ul { list-style: none; padding: 0; margin: 0; }
+  .gan-reminder li { padding: 6px 0; font-size: 18px; display: flex; align-items: flex-start; gap: 10px; }
+  .gan-reminder li .emoji { font-size: 22px; min-width: 30px; }
+  .gan-reminder li .text { flex: 1; }
+
   .phone { display: inline-block; background: #B4531A; color: white; padding: 10px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: 20px; margin: 6px 0; }
   .phone:active { background: #8B3F0E; }
 
@@ -100,12 +110,29 @@
     <div class="row"><div class="time">18:30</div><div class="action">🛁 מקלחת</div></div>
     <div class="row"><div class="time">19:00</div><div class="action">📖 סיפור + 🐰 ארנב + מוצץ → שינה בלול</div></div>
   </div>
+  <div class="gan-reminder evening">
+    <div class="gr-title">🏁 בסיום הגן – אל תשכחו:</div>
+    <ul>
+      <li><span class="emoji">💧</span><span class="text"><strong>לקחת את בקבוק המים חזרה!</strong></span></li>
+      <li><span class="emoji">🧼</span><span class="text">בבית – לשטוף היטב את הבקבוק (חוזרים מלוכלכים)</span></li>
+    </ul>
+  </div>
 </div>
 
 <!-- Wednesday -->
 <div class="day" id="day-wed">
   <div class="day-title">יום רביעי · 07/10</div>
   <div class="day-caregiver">👴👵 אצל <strong>הורי שיר</strong> (סנונית 30א)</div>
+
+  <div class="gan-reminder">
+    <div class="gr-title">🌅 לפני היציאה לגן – לבדוק שיש:</div>
+    <ul>
+      <li><span class="emoji">💧</span><span class="text"><strong>בקבוק מים</strong> (רחוץ ומלא)</span></li>
+      <li><span class="emoji">✍️</span><span class="text">שם "דן" כתוב על כל פריט – בגדים, מוצץ (נמחק בשטיפות – לחדש)</span></li>
+      <li><span class="emoji">🎒</span><span class="text">בתא בגן: לפחות <strong>5 חיתולים</strong> + <strong>2 סטים</strong> בגדים (מכנס+חולצה) + <strong>ארנב גיבוי</strong></span></li>
+    </ul>
+  </div>
+
   <div class="schedule">
     <div class="row"><div class="time">08:00</div><div class="action">הורי שיר מכניסים לגן</div></div>
     <div class="row"><div class="time">16:00</div><div class="action">הורי שיר אוספים מהגן</div></div>
@@ -114,12 +141,30 @@
     <div class="row"><div class="time">18:30</div><div class="action">🛁 מקלחת</div></div>
     <div class="row"><div class="time">19:00</div><div class="action">📖 סיפור + 🐰 ארנב + מוצץ → שינה בלול</div></div>
   </div>
+
+  <div class="gan-reminder evening">
+    <div class="gr-title">🏁 בסיום הגן – אל תשכחו:</div>
+    <ul>
+      <li><span class="emoji">💧</span><span class="text"><strong>לקחת את בקבוק המים חזרה!</strong></span></li>
+      <li><span class="emoji">🧼</span><span class="text">בבית – לשטוף היטב את הבקבוק</span></li>
+    </ul>
+  </div>
 </div>
 
 <!-- Thursday -->
 <div class="day" id="day-thu">
   <div class="day-title">יום חמישי · 08/10</div>
   <div class="day-caregiver">👴👵 אצל <strong>הורי שיר</strong> (סנונית 30א)</div>
+
+  <div class="gan-reminder">
+    <div class="gr-title">🌅 לפני היציאה לגן – לבדוק שיש:</div>
+    <ul>
+      <li><span class="emoji">💧</span><span class="text"><strong>בקבוק מים</strong> (רחוץ ומלא)</span></li>
+      <li><span class="emoji">✍️</span><span class="text">שם "דן" כתוב על כל פריט – בגדים, מוצץ (נמחק בשטיפות – לחדש)</span></li>
+      <li><span class="emoji">🎒</span><span class="text">בתא בגן: לפחות <strong>5 חיתולים</strong> + <strong>2 סטים</strong> בגדים (מכנס+חולצה) + <strong>ארנב גיבוי</strong></span></li>
+    </ul>
+  </div>
+
   <div class="schedule">
     <div class="row"><div class="time">08:00</div><div class="action">הורי שיר מכניסים לגן</div></div>
     <div class="row"><div class="time">16:00</div><div class="action">הורי שיר אוספים מהגן</div></div>
@@ -127,6 +172,14 @@
     <div class="row"><div class="time">18:00</div><div class="action">🍽️ ארוחת ערב</div></div>
     <div class="row"><div class="time">18:30</div><div class="action">🛁 מקלחת</div></div>
     <div class="row"><div class="time">19:00</div><div class="action">📖 סיפור + 🐰 ארנב + מוצץ → שינה בלול</div></div>
+  </div>
+
+  <div class="gan-reminder evening">
+    <div class="gr-title">🏁 בסיום הגן – אל תשכחו:</div>
+    <ul>
+      <li><span class="emoji">💧</span><span class="text"><strong>לקחת את בקבוק המים חזרה!</strong></span></li>
+      <li><span class="emoji">🧼</span><span class="text">בבית – לשטוף היטב את הבקבוק</span></li>
+    </ul>
   </div>
 </div>
 
@@ -159,6 +212,42 @@
 </div>
 
 <!-- Common sections -->
+<div class="common-tab" onclick="toggleSection('gan')">🎒 הוראות גן – בקבוק, חיתולים, שם – הקלקה לפתיחה</div>
+<div class="common-section" id="gan">
+  <div class="section">
+    <h2>💧 בקבוק מים</h2>
+    <ul>
+      <li>כל יום לגן <strong>חייב</strong> לצאת עם בקבוק מים</li>
+      <li>בסיום הגן – <strong>לקחת את הבקבוק חזרה הביתה!</strong></li>
+      <li>בבית – <strong>לשטוף היטב</strong> (חוזרים מאוד מלוכלכים)</li>
+      <li>יש <strong>3 בקבוקים</strong> שאפשר להחליף ביניהם – אפשר לשלוח אותו בקבוק אחרי שטיפה או בקבוק אחר</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>🎒 מלאי קבוע בתא של דן בגן</h2>
+    <p><strong>כל יום לוודא שיש:</strong></p>
+    <ul>
+      <li>לפחות <strong>5 חיתולים</strong></li>
+      <li><strong>2 סטים של תלבושות</strong> (מכנס + חולצה)</li>
+      <li><strong>ארנב גיבוי</strong> – אחד נשאר תמיד בגן, אחד בבית</li>
+    </ul>
+    <div class="highlight">
+      אם משהו חסר – להשלים לפני היציאה הבאה.
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>✍️ שם "דן" – על הכל</h2>
+    <p><strong>כל פריט שמגיע עם דן לגן חייב להיות מסומן בשם:</strong></p>
+    <ul>
+      <li>כל סט בגדים – בצווארון או בתווית</li>
+      <li><strong>מוצצים</strong> – צריך לכתוב את השם דן</li>
+      <li>⚠️ השם נמחק בשטיפות – <strong>לבדוק ולחדש כל פעם!</strong></li>
+    </ul>
+  </div>
+</div>
+
 <div class="common-tab" onclick="toggleSection('food')">🍽️ תזונה – הקלקה לפתיחה</div>
 <div class="common-section" id="food">
   <div class="section">
